@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Prescriber from './Prescriber/Prescriber';
+import './index.css';
 
 const App = () => {
   return (

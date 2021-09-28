@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import './prescriber.css';
+import Header from '../Header';
+import { createPrescription } from '../api/api';
 
 const Prescriber = () => {
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const [patientName, setPatientName] = useState('');
+  const [prescriberKey, setPrescriberKey] = useState('');
   const [ID, setID] = useState(1);
   const defaultPrescription = {
     id: ID,
@@ -17,6 +21,7 @@ const Prescriber = () => {
   const [newPrescription, setNewPrescription] = useState(defaultPrescription);
   const [edit, setEdit] = useState(false);
   const [editID, setEditID] = useState(-1);
+
 
 
   useEffect(() => {
@@ -58,12 +63,27 @@ const Prescriber = () => {
     setNewPrescription({...newPrescription, [e.target.name]: e.target.value});
   }
 
+  const generatePrescription = async () => {
+    if(prescriptionList.length === 0) {
+      alert('Cannot create empty prescription');
+      return;
+    }
+    await createPrescription(prescriberKey)
+    .then(result => {
+      if(result.status === 200) {
+        // alert('Prescription created');
+        console.log(result);
+        // Redirect to print (maybe)
+      }
+    })
+    .catch(error => {
+      alert(error.response.status);
+    })
+  }
+
   return (
     <Grid container>
-      <Grid item className='header' xs={12} sm={4}>
-        <p className='date'>{date}</p>
-        <TextField variant='outlined' label='Patient Name'/>
-      </Grid>
+      <Header date={date} patientName={patientName} setPatientName={setPatientName} prescriberKey={prescriberKey} setPrescriberKey={setPrescriberKey} />
       <Grid item style={{marginTop:'30px'}} xs={12} align='center'>
         <Grid item xs={10}>
           <TableContainer style={{marginBottom: '30px'}} component={Paper}>
@@ -100,8 +120,10 @@ const Prescriber = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          
         </Grid>
+      </Grid>
+      <Grid item align='center' xs={12} style={{marginTop: '50px'}} onClick={generatePrescription}>
+        <Button variant='contained'>Generate Prescription</Button>
       </Grid>
     </Grid>
   )

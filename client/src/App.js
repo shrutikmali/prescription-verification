@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Prescriber from './Prescriber/Prescriber';
+import Prescription from './Prescription/Prescription';
 import Header from './Header';
 import './index.css';
 
@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route path='/prescriber'>
-          <Prescriber />
+          <Prescription />
         </Route>
         <Route path='/test'>
           <Header />

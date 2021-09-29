@@ -2,13 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Prescription from './Prescription/Prescription';
 import Header from './Header';
+import Prescriber from './Prescriber/Prescriber';
 import './index.css';
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path='/prescriber'>
+        <Route path='/prescription'>
           <Prescription />
         </Route>
         <Route path='/test'>

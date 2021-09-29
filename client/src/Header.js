@@ -1,42 +1,17 @@
-import React from 'react';
-import { Grid, TextField, Button } from '@mui/material';
-import { checkPrescriberKey as check } from './api/api';
+import React, { useState } from 'react';
+import { Grid, TextField } from '@mui/material';
 
-const Header = ({ date, patientName, setPatientName, prescriberKey, setPrescriberKey }) => {
 
-  const handleNameChange = (e) => {
-    setPatientName(e.target.value);
-  }
-
-  const handleKeyChange = (e) => {
-    setPrescriberKey(e.target.value);
-  }
-
-  const checkPrescriberKey = async () => {
-    await check(prescriberKey)
-    .then(e => {
-      if(e.status === 200) {
-        console.log('Key verified')
-      }
-    })
-    .catch(error => {
-      alert(`Incorrect key. Error code: ${error.response.status}`);
-    });
-  }
+const Header = ({ date, patientName, setPatientName }) => {
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   return (
     <Grid container>
       <Grid item xs={12} style={{paddingLeft: '15%', paddingTop: '2%'}}>
-        <p>Date: {date}</p>
+        <p>Date: {date.getDate()} {MONTHS[date.getMonth()]} {date.getFullYear()}</p>
       </Grid>
-      <Grid item container xs={12} style={{paddingLeft: '15%', paddingTop: '2%'}} justifyContent='space-between'>
-        <Grid item>
-          <TextField variant='outlined' label='Patient Name' name='patientName' value={patientName} onChange={handleNameChange} />
-        </Grid>
-        <Grid item style={{paddingRight: '15%'}}>
-          <TextField variant='outlined' label='Prescriber Key' name={prescriberKey} value={prescriberKey} onChange={handleKeyChange} />
-          <Button variant='contained' style={{marginLeft: '15px', marginTop: '8px'}} onClick={checkPrescriberKey}>Check</Button>
-        </Grid>
+      <Grid item xs={12} md={6} style={{marginTop: '30px', paddingLeft: '15%'}}>
+        <TextField name="patientName" label="Patient Name" value={patientName} onChange={(e) => setPatientName(e.target.value)}/>
       </Grid>
     </Grid>
   )

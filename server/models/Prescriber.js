@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
 
 const prescriberSchema = new mongoose.Schema({
-  prescriberKey: {
-    type: [String],
+  email: {
+    type: String,
     required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  mostRecentOTP: {
+    type: String,
+    default: 'placeholder',
   },
 });
 

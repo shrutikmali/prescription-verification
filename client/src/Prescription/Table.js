@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 
-const PrescriptionTable = ({ prescriptionList, setPrescriptionList }) => {
+const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => {
 
   class Prescription {
     constructor(id, medicineName, dose, timeOfConsumption) {
@@ -55,29 +55,31 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList }) => {
     setEditID(id);
   }
 
-  const deletePrescription = (id) => {
-    prescriptionList.forEach(prescription => {
-      if(prescription.id === id) {
-        prescription.isVisible = false;
-      }
-    });
-    setPrescriptionList(prescriptionList);
-  }
+  // const deletePrescription = (id) => {
+  //   prescriptionList.forEach(prescription => {
+  //     if(prescription.id === id) {
+  //       prescription.isVisible = false;
+  //     }
+  //   });
+  //   setPrescriptionList(prescriptionList);
+  // }
 
   return (
     <Grid container>
-      <Grid item xs={12} md={3} align="center">
-        <TextField label="Medicine Name" name="medicineName" value={prescription.medicineName} onChange={handleChange} />
-      </Grid>
-      <Grid item xs={12} md={3} align="center">
-        <TextField label="Dose" name="dose" value={prescription.dose} onChange={handleChange} />
-      </Grid>
-      <Grid item xs={12} md={3} align="center">
-        <TextField label="Time of Consumption" name="timeOfConsumption" value={prescription.timeOfConsumption} onChange={handleChange} />
-      </Grid>
-      <Grid item xs={12} md={3} align="center">
-        <Button variant="contained" onClick={savePrescription}>{editID === -1 ? "Add" : "Save"}</Button>
-      </Grid>
+      {!print && <div>
+        <Grid item xs={12} md={3} align="center">
+          <TextField label="Medicine Name" name="medicineName" value={prescription.medicineName} onChange={handleChange} />
+        </Grid>
+        <Grid item xs={12} md={3} align="center">
+          <TextField label="Dose" name="dose" value={prescription.dose} onChange={handleChange} />
+        </Grid>
+        <Grid item xs={12} md={3} align="center">
+          <TextField label="Time of Consumption" name="timeOfConsumption" value={prescription.timeOfConsumption} onChange={handleChange} />
+        </Grid>
+        <Grid item xs={12} md={3} align="center">
+          <Button variant="contained" onClick={savePrescription}>{editID === -1 ? "Add" : "Save"}</Button>
+        </Grid>
+      </div>}
       <Grid item xs={12} align="center" style={{marginTop: '20px'}}>
         <Grid item xs={10} align="center">
         <TableContainer component={Paper}>
@@ -88,20 +90,22 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList }) => {
                   <TableCell align="center">Medicine Name</TableCell>
                   <TableCell align="center">Dose</TableCell>
                   <TableCell align="center">Time of Consumption</TableCell>
-                  <TableCell align="center">Edit</TableCell>
+                  {!print && <TableCell align="center">Edit</TableCell>}
                   {/* <TableCell align="center">Delete</TableCell> */}
                 </TableRow>
               </TableHead>
-              {prescriptionList.map(prescription => (
-                prescription.isVisible && <TableRow key={prescription.id}>
-                  <TableCell align="center">{prescription.id+1}</TableCell>
-                  <TableCell align="center">{prescription.medicineName}</TableCell>
-                  <TableCell align="center">{prescription.dose}</TableCell>
-                  <TableCell align="center">{prescription.timeOfConsumption}</TableCell>
-                  <TableCell align="center"><Button onClick={() => editPrescription(prescription.id)}>Edit</Button></TableCell>
-                  {/* <TableCell align="center"><Button onClick={() => deletePrescription(prescription.id)}>Delete</Button></TableCell> */}
-                </TableRow>
-              ))}
+              <TableBody>
+                {prescriptionList.map(prescription => (
+                  prescription.isVisible && <TableRow key={prescription.id}>
+                    <TableCell align="center">{prescription.id+1}</TableCell>
+                    <TableCell align="center">{prescription.medicineName}</TableCell>
+                    <TableCell align="center">{prescription.dose}</TableCell>
+                    <TableCell align="center">{prescription.timeOfConsumption}</TableCell>
+                    {!print && <TableCell align="center"><Button onClick={() => editPrescription(prescription.id)}>Edit</Button></TableCell>}
+                    {/* <TableCell align="center"><Button onClick={() => deletePrescription(prescription.id)}>Delete</Button></TableCell> */}
+                  </TableRow>
+                ))}
+              </TableBody>
             </Table>
           </TableContainer>
         </Grid>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { savePresriptionKey, checkPrescriberKey, createPrescription, signIn, signUp, getOTP, verifyOTP } = require('../controllers/controllers.js');
+const { savePresriptionKey, checkPrescriberKey, createPrescription, signIn, signUp, getOTP, verifyOTP, savePrescription } = require('../controllers/controllers.js');
 
 const app = express();
 
@@ -10,5 +10,6 @@ const app = express();
 // app.post('/signup', signUp);
 app.post('/getotp', getOTP);
 app.post('/verifyotp', verifyOTP)
+app.post("/saveprescription", savePrescription);
 
 module.exports = app;

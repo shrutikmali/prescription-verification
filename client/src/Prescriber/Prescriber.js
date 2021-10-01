@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Button, TextField } from '@mui/material';
-import { signIn, signUp } from '../api/api';
+import { signUp } from '../api/api';
 
 const inputStyle = {
   marginTop: '15px',

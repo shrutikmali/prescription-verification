@@ -1,11 +1,34 @@
 const mongoose = require('mongoose');
 
-const prescriptionSchema = new mongoose.Schema({
-  secret: {
+const prescriptionItemSchema = new mongoose.Schema({
+  medicineName: {
     type: String,
     required: true,
   },
-  token: {
+  dose: {
+    type: String,
+    required: true,
+  },
+  timeOfConsumption: {
+    type: String,
+    required: true,
+  },
+});
+
+const prescriptionSchema = new mongoose.Schema({
+  prescriberEmail: {
+    type: String,
+  },
+  prescription: {
+    type: [prescriptionItemSchema],
+    default: null,
+    required: true,
+  },
+  patientName: {
+    type: String,
+    required: true,
+  },
+  date: {
     type: String,
     required: true,
   },
@@ -13,4 +36,5 @@ const prescriptionSchema = new mongoose.Schema({
 
 const Prescription = mongoose.model('Prescription', prescriptionSchema);
 
-module.exports = { Prescription };
+
+module.exports = Prescription;

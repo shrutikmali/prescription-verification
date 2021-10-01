@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import PrescriptionTable from './Table';
 import Header from '../Header';
 import Footer from './Footer';
-import { getOTP as OTPRequest, verifyOTP } from '../api/api';
+import { getOTP as OTPRequest, verifyOTP, savePrescription as save } from '../api/api';
+import { useHistory } from 'react-router-dom';
 
 const Prescription = () => {
+  const history = useHistory();
 
-  const [date, setDate] = useState(new Date());
+  const [date, ] = useState(new Date());
   const [patientName, setPatientName] = useState("");
   const [prescriptionList, setPrescriptionList] = useState([]);
   const [prescriberEmail, setPrescriberEmail] = useState("");
@@ -44,6 +46,17 @@ const Prescription = () => {
     });
   }
 
+  const printPrescription = async () => {
+    await save(date, patientName, prescriberEmail, prescriptionList)
+    .then(result => {
+      console.log(result);
+      history.push('/print', {patientName, prescriptionList, date: date.toString(), id: result.data.id});
+    })
+    .catch(error => {
+      console.log(error.response);
+    })
+  }
+
 
   return <>
     <Header date={date} patientName={patientName} setPatientName={setPatientName} />
@@ -62,7 +75,8 @@ const Prescription = () => {
     setOTP={setOTP} 
     getOTP={getOTP} 
     checkOTP={checkOTP} 
-    OTPVerified={OTPVerified} />
+    OTPVerified={OTPVerified} 
+    printPrescription={printPrescription} />
   </>
 }
 

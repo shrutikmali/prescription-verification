@@ -1,0 +1,12 @@
+/* @page {
+  size: A4;
+  margin: 0px;
+  padding: 10px;
+} */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0px;
+  }
+}

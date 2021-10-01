@@ -21,21 +21,6 @@ const savePresriptionKey = (req, res) => {
   console.log("Prescription saved");
 }
 
-const checkPrescriberKey = async (req, res) => {
-  const { prescriberKey } = req.body;
-  console.log(prescriberKey);
-  try {
-    const prescriber = await Prescriber.findOne({prescriberKey: prescriberKey})
-    if(!prescriber) {
-      res.status(404).send();
-    }
-    res.status(200).send();
-  }
-  catch (error) {
-    res.status(404).json({message: error.message})
-  }
-}
-
 const checkQRCode = (req, res) => {
   /*
   -Receive string from QR code
@@ -148,11 +133,23 @@ const verifyOTP = async (req, res) => {
   }
 }
 
+const savePrescription = async (req, res) => {
+  const { date, prescriberEmail, patientName, prescriptionList } = req.body;
+  try {
+    const result = await Prescription.create({date: date, prescriberEmail: prescriberEmail, patientName: patientName, prescription: prescriptionList});
+    // Generate QR code
+    res.status(200).json({id: result._id});
+  }
+  catch(error) {
+    res.status(500).json({message: error.message});
+  }
+}
+
 module.exports = {
   savePresriptionKey,
-  checkPrescriberKey,
   checkQRCode,
   createPrescription,
   getOTP,
   verifyOTP,
+  savePrescription,
 };

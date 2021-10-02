@@ -4,6 +4,7 @@ import { signUp } from '../api/api';
 
 const inputStyle = {
   marginTop: '15px',
+  width: '250px',
 };
 
 const buttonStyle = {
@@ -21,10 +22,11 @@ const Prescriber = () => {
     setCredentials({...credentials, [e.target.name]: e.target.value});
   }
   const authenticate = async () => {
+    console.log(credentials);
     await signUp(credentials)
     .then(result =>{
       if(result.status === 200) {
-        console.log('Success');
+        alert("Account created, navigate to localhost:PORT_NO/prescription");
       }
     })
     .catch(error => console.log(error.response));

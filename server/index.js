@@ -17,5 +17,3 @@ mongoose.connect(MONGODB_CONNECTION, {useUnifiedTopology: true, useNewUrlParser:
   .then(() => console.log('MongoDB connected'))
   .then(() => app.listen(PORT))
   .then(() => console.log(`Server listening on port ${PORT}`));
-
-// mongoose.set('useFindAndModify', false);

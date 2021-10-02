@@ -13,6 +13,9 @@ const prescriptionItemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  id: {
+    type: Number,
+  }
 });
 
 const prescriptionSchema = new mongoose.Schema({

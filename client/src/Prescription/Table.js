@@ -40,6 +40,7 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
       newPrescription.id = prescriptionList.length;
       newPrescription.isVisible = true;
       setPrescriptionList([...prescriptionList, newPrescription]);
+      document.getElementsByName("medicineName")[0].focus();
     }
     setPrescription({
       medicineName: '',
@@ -66,20 +67,18 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
 
   return (
     <Grid container>
-      {!print && <div>
-        <Grid item xs={12} md={3} align="center">
+        {!print && <Grid item xs={12} md={3} align="center">
           <TextField label="Medicine Name" name="medicineName" value={prescription.medicineName} onChange={handleChange} />
-        </Grid>
-        <Grid item xs={12} md={3} align="center">
+        </Grid>}
+        {!print && <Grid item xs={12} md={3} align="center">
           <TextField label="Dose" name="dose" value={prescription.dose} onChange={handleChange} />
-        </Grid>
-        <Grid item xs={12} md={3} align="center">
+        </Grid>}
+        {!print && <Grid item xs={12} md={3} align="center">
           <TextField label="Time of Consumption" name="timeOfConsumption" value={prescription.timeOfConsumption} onChange={handleChange} />
-        </Grid>
-        <Grid item xs={12} md={3} align="center">
+        </Grid>}
+        {!print && <Grid item xs={12} md={3} align="center">
           <Button variant="contained" onClick={savePrescription}>{editID === -1 ? "Add" : "Save"}</Button>
-        </Grid>
-      </div>}
+        </Grid>}
       <Grid item xs={12} align="center" style={{marginTop: '20px'}}>
         <Grid item xs={10} align="center">
         <TableContainer component={Paper}>
@@ -96,7 +95,7 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
               </TableHead>
               <TableBody>
                 {prescriptionList.map(prescription => (
-                  prescription.isVisible && <TableRow key={prescription.id}>
+                  <TableRow key={prescription.id}>
                     <TableCell align="center">{prescription.id+1}</TableCell>
                     <TableCell align="center">{prescription.medicineName}</TableCell>
                     <TableCell align="center">{prescription.dose}</TableCell>

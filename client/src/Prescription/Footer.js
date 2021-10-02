@@ -21,7 +21,7 @@ const Footer = ({ prescriberEmail, setPrescriberEmail, prescriberPassword, setPr
       {showOTPField && <Grid item xs={12} align='center' style={{marginBottom: '10px',}}>
         <Button onClick={checkOTP}>Check</Button>
       </Grid>}
-      {true && <Grid item xs={12} align='center'>
+      {OTPVerified && <Grid item xs={12} align='center'>
         <Button onClick={printPrescription}>Print</Button>
       </Grid>}
     </Grid>

@@ -12,7 +12,7 @@ const Print = () => {
   // console.log(history.location.state.date);
   // console.log(history.location.state.id);
   useEffect(() => {
-    qrcode.toCanvas(document.getElementById('qrcode'), history.location.state.id, function(error) {
+    qrcode.toCanvas(document.getElementById('qrcode'), `http://192.168.0.103:3000/verify/${history.location.state.id}`, function(error) {
       if(error) {
         console.log(error);
       }

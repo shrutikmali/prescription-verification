@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { SERVER } from '../constants';
 
-const URL = 'http://192.168.0.103:5000'
+const URL = `${SERVER}:5000`;
 
 export const checkPrescriberKey = (prescriberKey) => axios.post(`${URL}/check`, {prescriberKey});
 export const createPrescription = (prescriberKey) => axios.post(`${URL}/create`, {prescriberKey});

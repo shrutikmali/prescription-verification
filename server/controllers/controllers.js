@@ -43,23 +43,19 @@ const getOTP = async (req, res) => {
       let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          type: "OAuth2",
           user: process.env.EMAILID,
           pass: process.env.EMAILPASSWORD,
-          clientId: process.env.CLIENTID,
-          clientSecret: process.env.CLIENTSECRET,
-          refreshToken: process.env.REFRESHTOKEN,
         }
       });
       let mailOptions = {
-        from: "shrutik.mali15@gmail.com",
+        from: process.env.EMAILID,
         to: email,
         subject: "Prescription OTP",
         html: `<p>OTP is <b>${otp}</b></p>`
       };
       await transporter.sendMail(mailOptions)
       .then((data) => {
-        res.status(200).send("OTP sent");
+        res.status(200).json({prescriberName: existingPrescriber.name});
       })
       .catch(err => {
         throw new Error(err.message);
@@ -78,7 +74,7 @@ const verifyOTP = async (req, res) => {
     if(!existingPrescriber) {
       res.status(404).send("Invalid email");
     }
-    if(existingPrescriber.mostRecentOTP !== otp) {
+    if(existingPrescriber.mostRecentOTP !== otp || otp === '' || otp === 'placeholder') {
       res.status(409).send("Invalid OTP, try again");
     }
     else {

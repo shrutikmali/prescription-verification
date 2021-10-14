@@ -56,14 +56,6 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
     setEditID(id);
   }
 
-  // const deletePrescription = (id) => {
-  //   prescriptionList.forEach(prescription => {
-  //     if(prescription.id === id) {
-  //       prescription.isVisible = false;
-  //     }
-  //   });
-  //   setPrescriptionList(prescriptionList);
-  // }
 
   return (
     <Grid container>
@@ -90,7 +82,6 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
                   <TableCell align="center">Dose</TableCell>
                   <TableCell align="center">Time of Consumption</TableCell>
                   {!print && <TableCell align="center">Edit</TableCell>}
-                  {/* <TableCell align="center">Delete</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -101,7 +92,6 @@ const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => 
                     <TableCell align="center">{prescription.dose}</TableCell>
                     <TableCell align="center">{prescription.timeOfConsumption}</TableCell>
                     {!print && <TableCell align="center"><Button onClick={() => editPrescription(prescription.id)}>Edit</Button></TableCell>}
-                    {/* <TableCell align="center"><Button onClick={() => deletePrescription(prescription.id)}>Delete</Button></TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>

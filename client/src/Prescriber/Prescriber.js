@@ -26,7 +26,7 @@ const Prescriber = () => {
     await signUp(credentials)
     .then(result =>{
       if(result.status === 200) {
-        alert("Account created, navigate to localhost:PORT_NO/prescription");
+        alert("Account created, navigate to /prescription");
       }
     })
     .catch(error => console.log(error.response));

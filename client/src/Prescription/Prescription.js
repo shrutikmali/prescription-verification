@@ -12,6 +12,7 @@ const Prescription = () => {
   const [patientName, setPatientName] = useState("");
   const [prescriptionList, setPrescriptionList] = useState([]);
   const [prescriberEmail, setPrescriberEmail] = useState("");
+  const [prescriberName, setPrescriberName] = useState("");
   const [prescriberPassword, setPrescriberPassword] = useState("");
   const [OTP, setOTP] = useState('');
   const [OTPVerified, setOTPVerified] = useState(false);
@@ -21,6 +22,7 @@ const Prescription = () => {
     .then(result => {
       if(result.status === 200) {
         alert("OTP sent to registered email");
+        setPrescriberName(result.data.prescriberName);
       }
       else {
         alert("Some error occurred");
@@ -50,7 +52,7 @@ const Prescription = () => {
     await save(date, patientName, prescriberEmail, prescriptionList)
     .then(result => {
       console.log(result);
-      history.push('/print', {patientName, prescriptionList, date: date.toString(), id: result.data.id});
+      history.push('/print', {patientName, prescriptionList, prescriberName: prescriberName, date: date.toString(), id: result.data.id});
     })
     .catch(error => {
       console.log(error.response);

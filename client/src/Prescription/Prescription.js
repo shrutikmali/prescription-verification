@@ -14,7 +14,8 @@ const Prescription = () => {
   const [prescriberEmail, setPrescriberEmail] = useState("");
   const [prescriberName, setPrescriberName] = useState("");
   const [prescriberPassword, setPrescriberPassword] = useState("");
-  const [OTP, setOTP] = useState('');
+  const [validity, setValidity] = useState("");
+  const [OTP, setOTP] = useState("");
   const [OTPVerified, setOTPVerified] = useState(false);
 
   const getOTP = async () => {
@@ -49,7 +50,7 @@ const Prescription = () => {
   }
 
   const printPrescription = async () => {
-    await save(date, patientName, prescriberEmail, prescriptionList)
+    await save(date, patientName, prescriberEmail, prescriptionList, validity)
     .then(result => {
       console.log(result);
       history.push('/print', {patientName, prescriptionList, prescriberName: prescriberName, date: date.toString(), id: result.data.id});
@@ -61,7 +62,7 @@ const Prescription = () => {
 
 
   return <>
-    <Header date={date} patientName={patientName} setPatientName={setPatientName} />
+    <Header date={date} patientName={patientName} setPatientName={setPatientName} validity={validity} setValidity={setValidity} />
     <br />
     <br />
     <PrescriptionTable prescriptionList={prescriptionList} setPrescriptionList={setPrescriptionList} />

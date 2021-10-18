@@ -4,7 +4,7 @@
   padding: 10px;
 } */
 
-.print-btn {
+.printBtn {
   margin-top: 20px;
 }
 
@@ -13,7 +13,7 @@
     size: A4;
     margin: 0px;
   }
-  .print-btn {
+  .printBtn {
     display: none;
   }
 }

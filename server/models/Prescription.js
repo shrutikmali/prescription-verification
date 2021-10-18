@@ -35,6 +35,10 @@ const prescriptionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  validity: {
+    type: String,
+    required: true,
+  },
 });
 
 const Prescription = mongoose.model('Prescription', prescriptionSchema);

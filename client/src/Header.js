@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, TextField } from '@mui/material';
 
 
-const Header = ({ date, patientName, setPatientName }) => {
+const Header = ({ date, patientName, setPatientName, validity, setValidity }) => {
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   return (
@@ -12,6 +12,10 @@ const Header = ({ date, patientName, setPatientName }) => {
       </Grid>
       <Grid item xs={12} md={6} style={{marginTop: '30px', paddingLeft: '15%'}}>
         <TextField name="patientName" label="Patient Name" value={patientName} onChange={(e) => setPatientName(e.target.value)}/>
+      </Grid>
+      <Grid item xs={12} md={6} style={{marginTop: '45px',}}>
+        Valid upto: 
+        <input type='date' style={{marginLeft: '10px'}} value={validity} onChange={(e) => setValidity(e.target.value)}/>
       </Grid>
     </Grid>
   )

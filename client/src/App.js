@@ -25,7 +25,8 @@ const App = () => {
           <Verify />
         </Route>
         <Route path='/'>
-          <h3>App</h3>
+          <h3>Navigate to /prescriber to create an account</h3>
+          <h3>Navigate to /prescription to create prescription</h3>
         </Route>
       </Switch>
     </Router>

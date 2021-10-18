@@ -31,8 +31,8 @@ const Print = () => {
       <Grid item xs={12} align='center'>
         <PrescriptionTable prescriptionList={history.location.state.prescriptionList} print={true}/>
       </Grid>
-      <Grid item xs={12} align='center'>
-        <Button variant='contained' className='print-btn' onClick={() => window.print()}>Print</Button>
+      <Grid item xs={12} align='center' className='printBtn' >
+        <Button variant='contained' onClick={() => window.print()}>Print</Button>
       </Grid>
     </Grid>
   );

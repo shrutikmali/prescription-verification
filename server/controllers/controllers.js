@@ -88,9 +88,9 @@ const verifyOTP = async (req, res) => {
 }
 
 const savePrescription = async (req, res) => {
-  const { date, prescriberEmail, patientName, prescriptionList } = req.body;
+  const { date, prescriberEmail, patientName, prescriptionList, validity } = req.body;
   try {
-    const result = await Prescription.create({date: date, prescriberEmail: prescriberEmail, patientName: patientName, prescription: prescriptionList});
+    const result = await Prescription.create({date: date, prescriberEmail: prescriberEmail, patientName: patientName, prescription: prescriptionList, validity: validity});
     res.status(200).json({id: result._id});
   }
   catch(error) {

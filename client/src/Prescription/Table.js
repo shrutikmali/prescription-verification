@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 
-const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print }) => {
+const PrescriptionTable = ({ prescriptionList, setPrescriptionList, print, validity }) => {
 
   class Prescription {
     constructor(id, medicineName, dose, timeOfConsumption) {

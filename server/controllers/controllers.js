@@ -110,6 +110,7 @@ const verifyPrescription = async (req, res) => {
     prescriberEmail: existingPrescription.prescriberEmail, 
     prescriptionList: existingPrescription.prescription, 
     date: existingPrescription.date, 
+    validity: existingPrescription.validity,
     });
   }
   catch (error) {

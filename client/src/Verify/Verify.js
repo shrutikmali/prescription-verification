@@ -10,6 +10,7 @@ const Verify = () => {
   const INVALID = 'invalid';
   const [status, setStatus] = useState(CHECKING);
   const [prescriptionList, setPrescriptionList] = useState([]);
+  const [date, setDate] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const Verify = () => {
         if(result.status === 200) {
           setPrescriptionList(result.data.prescriptionList)
           setStatus(VALID);
+          setDate(result.data.validity);
         }
       })
       .catch(error => {
@@ -34,6 +36,7 @@ const Verify = () => {
         {status === INVALID && <h3>Invalid prescription</h3>}
         {status === VALID && <h3>Prescription Verified</h3>}
       </Grid>
+      <Grid item xs={12} align='center'>Valid upto: {date}</Grid>
       {status === VALID && <PrescriptionTable prescriptionList={prescriptionList} print={true} />}
     </Grid>
   );

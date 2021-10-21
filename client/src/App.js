@@ -10,7 +10,7 @@ import './index.css';
 const App = () => {
 
   return (
-    <Router>
+    // <Router>
       <Switch>
         <Route path='/prescriber'>
           <Prescriber />
@@ -29,7 +29,7 @@ const App = () => {
           <h3>Navigate to /prescription to create prescription</h3>
         </Route>
       </Switch>
-    </Router>
+    // {/* </Router> */}
   );
 }
 

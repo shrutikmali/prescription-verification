@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/prescription-verification/static/css/main.ec9858df.chunk.css",
-    "main.js": "/prescription-verification/static/js/main.84bc6b60.chunk.js",
-    "main.js.map": "/prescription-verification/static/js/main.84bc6b60.chunk.js.map",
+    "main.js": "/prescription-verification/static/js/main.4dda9fc1.chunk.js",
+    "main.js.map": "/prescription-verification/static/js/main.4dda9fc1.chunk.js.map",
     "runtime-main.js": "/prescription-verification/static/js/runtime-main.c345b884.js",
     "runtime-main.js.map": "/prescription-verification/static/js/runtime-main.c345b884.js.map",
-    "static/js/2.645fc6b3.chunk.js": "/prescription-verification/static/js/2.645fc6b3.chunk.js",
-    "static/js/2.645fc6b3.chunk.js.map": "/prescription-verification/static/js/2.645fc6b3.chunk.js.map",
+    "static/js/2.29819f77.chunk.js": "/prescription-verification/static/js/2.29819f77.chunk.js",
+    "static/js/2.29819f77.chunk.js.map": "/prescription-verification/static/js/2.29819f77.chunk.js.map",
     "index.html": "/prescription-verification/index.html",
     "static/css/main.ec9858df.chunk.css.map": "/prescription-verification/static/css/main.ec9858df.chunk.css.map",
-    "static/js/2.645fc6b3.chunk.js.LICENSE.txt": "/prescription-verification/static/js/2.645fc6b3.chunk.js.LICENSE.txt"
+    "static/js/2.29819f77.chunk.js.LICENSE.txt": "/prescription-verification/static/js/2.29819f77.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c345b884.js",
-    "static/js/2.645fc6b3.chunk.js",
+    "static/js/2.29819f77.chunk.js",
     "static/css/main.ec9858df.chunk.css",
-    "static/js/main.84bc6b60.chunk.js"
+    "static/js/main.4dda9fc1.chunk.js"
   ]
 }

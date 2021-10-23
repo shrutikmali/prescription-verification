@@ -11,7 +11,7 @@ app.use(cors());
 app.use('/', routes);
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_CONNECTION = 'mongodb://127.0.0.1:27017/DigitalPrescription';
+const MONGODB_CONNECTION = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@cluster0.8f6af.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 mongoose.connect(MONGODB_CONNECTION, {useUnifiedTopology: true, useNewUrlParser: true})
   .then(() => console.log('MongoDB connected'))

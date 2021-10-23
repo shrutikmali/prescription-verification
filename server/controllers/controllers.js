@@ -79,7 +79,7 @@ const verifyOTP = async (req, res) => {
     }
     else {
       await Prescriber.findByIdAndUpdate(existingPrescriber._id, {mostRecentOTP: ''});
-      res.status(200).send("OTP verified!");
+      res.status(200).json({name: existingPrescriber.name, message: "OTP Verified!"});
     }
   }
   catch(error) {

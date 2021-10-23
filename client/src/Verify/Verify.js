@@ -9,8 +9,12 @@ const Verify = () => {
   const VALID = 'valid';
   const INVALID = 'invalid';
   const [status, setStatus] = useState(CHECKING);
-  const [prescriptionList, setPrescriptionList] = useState([]);
-  const [date, setDate] = useState('');
+  const [prescriptionDetails, setPrescriptionDetails] = useState({
+    patientName: '',
+    prescriptionList: [],
+    date: '',
+    validity: '',
+  });
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,9 +22,8 @@ const Verify = () => {
       await verifyPrescription(id)
       .then(result => {
         if(result.status === 200) {
-          setPrescriptionList(result.data.prescriptionList)
+          setPrescriptionDetails(result.data);
           setStatus(VALID);
-          setDate(result.data.validity);
         }
       })
       .catch(error => {
@@ -30,14 +33,23 @@ const Verify = () => {
     verify();
   }, [id]);
 
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} align='center' style={{marginTop: '20px'}}>
-        {status === INVALID && <h3>Invalid prescription</h3>}
-        {status === VALID && <h3>Prescription Verified</h3>}
+      {status === INVALID && <Grid item xs={12} align='center' style={{marginTop: '20px'}}>
+        <h3>Invalid prescription</h3>
+      </Grid>}
+
+      {status === VALID && <Grid item contains xs={12} align='center'>
+      <Grid item xs={12}>
+        <h3>Prescription Verified</h3>
       </Grid>
-      <Grid item xs={12} align='center'>Valid upto: {date}</Grid>
-      {status === VALID && <PrescriptionTable prescriptionList={prescriptionList} print={true} />}
+      <Grid item xs={12} align='center'>Patient Name {prescriptionDetails.patientName}</Grid>
+      <Grid item xs={12} align='center'>Prescribed on: {prescriptionDetails.date}</Grid>
+      <Grid item xs={12} align='center'>Valid upto: {prescriptionDetails.validity}</Grid>
+      </Grid>
+      }
+      {status === VALID && <PrescriptionTable prescriptionList={prescriptionDetails.prescriptionList} print={true} />}
     </Grid>
   );
 }

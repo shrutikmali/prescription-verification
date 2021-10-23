@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { SERVER } from '../constants';
 
-const URL = `http://${SERVER}:5000`;
+const URL = `https://obscure-bastion-83307.herokuapp.com`;
 
 export const checkPrescriberKey = (prescriberKey) => axios.post(`${URL}/check`, {prescriberKey});
 export const createPrescription = (prescriberKey) => axios.post(`${URL}/create`, {prescriberKey});

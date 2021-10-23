@@ -6,7 +6,7 @@ import './print.css';
 
 const Print = ({ id, date, patientName, prescriberName, prescriptionList }) => {
   useEffect(() => {
-    qrcode.toCanvas(document.getElementById('qrcode'), `https://shrutikmali.github.io/prescription-verification/verify/${id}`, function(error) {
+    qrcode.toCanvas(document.getElementById('qrcode'), `https://shrutikmali.github.io/prescription-verification/#/verify/${id}`, function(error) {
       if(error) {
         console.log(error);
       }
